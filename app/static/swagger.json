@@ -1,0 +1,18 @@
+{
+    "info": {
+    "description": "Documentation for all available endpoints.",
+    "version": "1.0.1",
+    "title": "Flask Backend Design For Enterprise Applications",
+    "contact": {
+      "name": "API Documentation Support",
+      "email": "michaelasumadu1@gmail.com",
+      "url": ""
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+    "swagger": "2.0",
+    "paths": {}
+}

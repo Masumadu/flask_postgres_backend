@@ -1,0 +1,21 @@
+# LOCAL CONFIGURATION (DEVELOPMENT)
+# Flask Configuration
+FLASK_DEBUG=true
+SECRET_KEY=secret_key
+# Database Configuration
+DB_USER=db_user
+DB_NAME=db_name
+DEV_DB_HOST=localhost
+DB_PASSWORD=db_user_password
+DB_PORT=5432
+DB_ENGINE=POSTGRES
+# Redis Configuration
+REDIS_SERVER=redis_host_address
+REDIS_PORT=redis_port
+REDIS_PASSWORD=redis_password
+# MAIL CONFIG
+MAIL_SERVER=mail_server_address
+MAIL_SERVER_PORT=mail_server_port
+DEFAULT_MAIL_SENDER_ADDRESS=mail_address_for_sending_logs
+ADMIN_MAIL_ADDRESSES=mail_address_for_receiving_logs
+DEFAULT_MAIL_SENDER_PASSWORD=mail_address_password_for_sending_logs
