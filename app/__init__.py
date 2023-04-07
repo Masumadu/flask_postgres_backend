@@ -31,7 +31,7 @@ SWAGGER_URL = "/api/v1/resource/docs"
 API_URL = "/static/swagger.json"
 
 SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
-    SWAGGER_URL, API_URL, config={"app_name": "Flask Backend Design For Enterprise Apps"}
+    SWAGGER_URL, API_URL, config={"app_name": "Flask Postgres Backend"}
 )
 
 

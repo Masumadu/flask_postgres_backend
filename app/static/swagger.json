@@ -2,7 +2,7 @@
     "info": {
     "description": "Documentation for all available endpoints.",
     "version": "1.0.1",
-    "title": "Flask Backend Design For Enterprise Applications",
+    "title": "Flask Postgres Backend",
     "contact": {
       "name": "API Documentation Support",
       "email": "michaelasumadu1@gmail.com",

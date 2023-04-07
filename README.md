@@ -86,5 +86,3 @@
     - Yes, feel free to fork it
   - **Can we improve it?**
     - Yes, feel free to send a pull request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
