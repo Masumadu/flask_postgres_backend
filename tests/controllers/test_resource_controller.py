@@ -1,9 +1,11 @@
 import uuid
-from flask import current_app
+
 import pytest
-from app.enums import TokenTypeEnum
+from flask import current_app
+
 from app.core import Result
 from app.core.exceptions import AppException
+from app.enums import TokenTypeEnum
 from app.models import ResourceModel
 from tests.base_test_case import BaseTestCase
 
@@ -33,9 +35,7 @@ class TestResourceController(BaseTestCase):
 
     @pytest.mark.controller
     def test_get_resource(self):
-        result = self.resource_controller.get_resource(
-            obj_id=self.resource_model.id
-        )
+        result = self.resource_controller.get_resource(obj_id=self.resource_model.id)
         self.assertIsNotNone(result)
         self.assertIsInstance(result, Result)
         self.assert200(result)
@@ -72,17 +72,13 @@ class TestResourceController(BaseTestCase):
 
     @pytest.mark.controller
     def test_delete_resource(self):
-        result = self.resource_controller.delete_resource(
-            obj_id=self.resource_model.id
-        )
+        result = self.resource_controller.delete_resource(obj_id=self.resource_model.id)
         self.assertIsNotNone(result)
         self.assertStatus(result, 204)
         self.assertIsNone(result.value)
         with self.assertLogs(logger=current_app.logger, level="ERROR") as logs:
             with self.assertRaises(AppException.NotFoundException) as not_found:
-                self.resource_controller.delete_resource(
-                    obj_id=self.resource_model.id
-                )
+                self.resource_controller.delete_resource(obj_id=self.resource_model.id)
             self.assertTrue(not_found.exception)
             self.assert404(not_found.exception)
         self.assertTrue(logs.output)

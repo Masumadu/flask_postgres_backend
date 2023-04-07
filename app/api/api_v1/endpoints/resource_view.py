@@ -2,15 +2,15 @@ import pinject
 from flask import Blueprint, request
 
 from app.controllers import ResourceController
-
 from app.core.service_result import handle_result
 from app.repositories import ResourceRepository
-
 from app.schema import (
-    ResourceSchema, CreateResourceSchema,
-    UpdateResourceSchema, ResourceRequestArgumentSchema
+    CreateResourceSchema,
+    ResourceRequestArgumentSchema,
+    ResourceSchema,
+    UpdateResourceSchema,
 )
-from app.services import RedisService, AuthService
+from app.services import AuthService, RedisService
 from app.utils import arg_validator, auth_required, validator
 
 resource = Blueprint("resource", __name__)
@@ -22,7 +22,7 @@ obj_graph = pinject.new_object_graph(
         ResourceRepository,
         ResourceSchema,
         RedisService,
-        AuthService
+        AuthService,
     ],
 )
 resource_controller: ResourceController = obj_graph.provide(ResourceController)

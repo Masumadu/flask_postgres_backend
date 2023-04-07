@@ -1,24 +1,34 @@
 <div align="center">
-  <h1><b>FLASK BACKEND APPLICATION 1</b></h1>
+  <h1><b>FLASK POSTGRES BACKEND APPLICATION</b></h1>
+  <h4>A Design Template For Building Enterprise Level Backend Applications Using Flask And Postgres</h4>
 </div>
 
 ## 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
-  - [👀 Overview](#overview)
-    - Design template for enterprise level application backend using flask.
-  - [🛠 Built With](#built-with)
-    - Python
-    - Poetry
-    - [Tech Stack](#tech-stack)
-      - Flask
-      - Postgres
-      - Redis
-    - [Key Features](#key-features)
-      - Factory Design Pattern
-      - Decorator Pattern
-      - Clean Code Approach
-      - Model View Controller (MVC) Design Pattern
+  - This is a flask backend application architecture to help developers kickstart their
+  - development without worrying about how to structure, design or architect their projects.
+  - Developers a free to clone the project and modify it to suit their needs.
+    - [👀 Overview](#overview)
+      - Design template for enterprise level backend application using flask.
+    - [🛠 Built With](#built-with)
+      - Python
+      - Poetry
+      - [Tech Stack](#tech-stack)
+        - FastApi
+        - Postgres
+        - Redis
+      - [Key Features](#key-features)
+        - Factory Design Pattern
+        - Decorator Pattern
+        - Clean Code Approach
+        - Model View Controller (MVC) Design Pattern
+- [💪 Motivation](#motivation)
+  - When I started as a python backend developer, I always struggled when it comes to designing,
+  - structuring or architecting my application to suit the growing needs of my clients.
+  - I read a lot of books about software architecture and design principles. These helped
+  - me to come up with this design to help serve as a template for new developers. This can
+  - serve as a guide for new python developers to build upon.
 - [💻 Getting Started](#getting-started)
   - [⚙️ Prerequisites](#prerequisites)
     - python3
@@ -46,7 +56,7 @@
       1. `poetry install`
     - after installing dependencies, run below command to start application
       1. `flask run -p 5000`
-    - access application on http://localhost:5000
+    - access application on http://localhost:8000
   - [Run tests](#run-tests)
     - To run the unit tests cases, run below command
       - `pytest -v`
@@ -68,4 +78,3 @@
     - Yes, feel free to send a pull request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-

@@ -1,8 +1,9 @@
 import uuid
 
-from app.enums import TokenTypeEnum
 import pytest
 from flask import url_for
+
+from app.enums import TokenTypeEnum
 from tests.base_test_case import BaseTestCase
 
 
@@ -21,7 +22,7 @@ class TestResourceRoutes(BaseTestCase):
             self.assert400(
                 self.client.post(
                     url_for("resource.create_resource"),
-                    json=self.resource_test_data.update_resource
+                    json=self.resource_test_data.update_resource,
                 )
             )
 
@@ -55,7 +56,7 @@ class TestResourceRoutes(BaseTestCase):
             response = self.client.patch(
                 url_for("resource.update_resource", resource_id=self.resource_model.id),
                 json=self.resource_test_data.update_resource,
-                headers=self.headers
+                headers=self.headers,
             )
             response_data = response.json
             self.assert200(response)
@@ -63,7 +64,7 @@ class TestResourceRoutes(BaseTestCase):
             self.assertTrue(response_data)
             self.assertEqual(
                 self.resource_model.title,
-                self.resource_test_data.update_resource.get("title")
+                self.resource_test_data.update_resource.get("title"),
             )
             self.token_type = TokenTypeEnum.refresh_token.value
             self.assert400(
@@ -78,7 +79,7 @@ class TestResourceRoutes(BaseTestCase):
         with self.client:
             response = self.client.delete(
                 url_for("resource.delete_resource", resource_id=self.resource_model.id),
-                headers=self.headers
+                headers=self.headers,
             )
             self.assertStatus(response, 204)
             self.assert401(
@@ -90,9 +91,7 @@ class TestResourceRoutes(BaseTestCase):
     @pytest.mark.views
     def test_get_access_token(self):
         with self.client:
-            response = self.client.get(
-                url_for("resource.get_access_token")
-            )
+            response = self.client.get(url_for("resource.get_access_token"))
             response_data = response.json
             self.assert200(response)
             self.assertIsInstance(response_data, dict)
@@ -104,7 +103,7 @@ class TestResourceRoutes(BaseTestCase):
             self.token_type = TokenTypeEnum.refresh_token.value
             response = self.client.get(
                 url_for("resource.get_refresh_token"),
-                query_string={"refresh_token": self.refresh_token}
+                query_string={"refresh_token": self.refresh_token},
             )
             response_data = response.json
             self.assert200(response)

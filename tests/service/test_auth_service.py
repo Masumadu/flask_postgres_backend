@@ -1,10 +1,12 @@
 import datetime
 import uuid
-from app.core.exceptions import AppException
+
 import pytest
+from flask import current_app
+
+from app.core.exceptions import AppException
 from app.enums import TokenTypeEnum
 from tests.base_test_case import BaseTestCase
-from flask import current_app
 
 
 class TestAuthService(BaseTestCase):
@@ -22,17 +24,13 @@ class TestAuthService(BaseTestCase):
         with self.client:
             with self.assertLogs(logger=current_app.logger, level="ERROR") as log:
                 with self.assertRaises(AppException.OperationError) as operation_error:
-                    self.auth_service.refresh_token(
-                        refresh_token=self.refresh_token
-                    )
+                    self.auth_service.refresh_token(refresh_token=self.refresh_token)
                 self.assertTrue(operation_error.exception)
                 self.assert400(operation_error.exception)
             self.assertTrue(log.output)
             self.assertIn("token invalid", log.output[0])
             self.token_type = TokenTypeEnum.refresh_token.value
-            result = self.auth_service.refresh_token(
-                refresh_token=self.refresh_token
-            )
+            result = self.auth_service.refresh_token(refresh_token=self.refresh_token)
             self.assertIsInstance(result, dict)
             self.assertTrue(result)
             self.assertIn("access_token", result)
@@ -44,8 +42,7 @@ class TestAuthService(BaseTestCase):
             result = self.auth_service.generate_token(
                 user_id=str(uuid.uuid4()),
                 token_type=TokenTypeEnum.access_token.value,
-                expiration=datetime.datetime.utcnow()
+                expiration=datetime.datetime.utcnow(),
             )
             self.assertIsInstance(result, str)
             self.assertTrue(result)
-

@@ -1,4 +1,5 @@
 import uuid
+
 from app.core import Result
 from app.core.exceptions import AppException
 from app.core.notifications.notifier import Notifier
@@ -13,9 +14,7 @@ OBJECT_NOT_FOUND = "object does not exist"
 
 class ResourceController(Notifier):
     def __init__(
-        self,
-        resource_repository: ResourceRepository,
-        auth_service: AuthService
+        self, resource_repository: ResourceRepository, auth_service: AuthService
     ):
         self.resource_repository = resource_repository
         self.auth_service = auth_service
@@ -49,9 +48,7 @@ class ResourceController(Notifier):
         assert obj_id, ASSERT_OBJECT_ID
 
         try:
-            result = self.resource_repository.update_by_id(
-                obj_id=obj_id, obj_in=obj_in
-            )
+            result = self.resource_repository.update_by_id(obj_id=obj_id, obj_in=obj_in)
         except AppException.NotFoundException:
             raise AppException.NotFoundException(error_message=OBJECT_NOT_FOUND)
 

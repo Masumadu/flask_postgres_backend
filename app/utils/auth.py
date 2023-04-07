@@ -1,14 +1,15 @@
 from functools import wraps
-from app.enums import TokenTypeEnum
+
 import jwt
 from flask import request
 from jwt.exceptions import ExpiredSignatureError, InvalidTokenError, PyJWTError
-from config import Config
+
 from app.core.exceptions import AppException
+from app.enums import TokenTypeEnum
+from config import Config
 
 
 def auth_required():
-
     def authorize_user(func):
         """
         A wrapper to authorize an action using

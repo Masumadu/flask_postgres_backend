@@ -15,6 +15,4 @@ class ResourceTestData:
 
     @property
     def update_resource(self):
-        return {
-            "title": "update title"
-        }
+        return {"title": "update title"}

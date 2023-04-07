@@ -1,15 +1,17 @@
 import os
 import uuid
 from unittest.mock import patch
-from app.enums import TokenTypeEnum
+
 import fakeredis
 from flask_testing import TestCase
-from app.services import AuthService
+
 from app import APP_ROOT, create_app, db
 from app.controllers import ResourceController
+from app.enums import TokenTypeEnum
 from app.models import ResourceModel
 from app.repositories import ResourceRepository
 from app.schema import ResourceSchema
+from app.services import AuthService
 from config import Config
 from tests.data import ResourceTestData
 
@@ -72,7 +74,4 @@ class BaseTestCase(TestCase):
 
     # noinspection PyMethodMayBeStatic
     def decoded_token(self, *args, **kwargs):
-        return {
-            "token_type": self.token_type,
-            "user_id": str(uuid.uuid4())
-        }
+        return {"token_type": self.token_type, "user_id": str(uuid.uuid4())}

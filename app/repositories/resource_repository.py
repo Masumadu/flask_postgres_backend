@@ -65,9 +65,7 @@ class ResourceRepository(SQLBaseRepository):
 
     def get_by_id(self, obj_id: str):
         try:
-            redis_data = self.redis_service.get(
-                SINGLE_RESOURCE_CACHE_KEY.format(obj_id)
-            )
+            redis_data = self.redis_service.get(SINGLE_RESOURCE_CACHE_KEY.format(obj_id))
             if redis_data:
                 deserialized_object = deserialize_cached_object(
                     obj_data=redis_data,
@@ -88,9 +86,7 @@ class ResourceRepository(SQLBaseRepository):
     def update_by_id(self, obj_id: str, obj_in: dict):
         postgres_data = super().update_by_id(obj_id, obj_in)
         try:
-            redis_data = self.redis_service.get(
-                SINGLE_RESOURCE_CACHE_KEY.format(obj_id)
-            )
+            redis_data = self.redis_service.get(SINGLE_RESOURCE_CACHE_KEY.format(obj_id))
             if redis_data:
                 self.redis_service.delete(SINGLE_RESOURCE_CACHE_KEY.format(obj_id))
             object_data = cache_object(
@@ -112,9 +108,7 @@ class ResourceRepository(SQLBaseRepository):
     def delete_by_id(self, obj_id):
         postgres_data = super().delete_by_id(obj_id)
         try:
-            redis_data = self.redis_service.get(
-                SINGLE_RESOURCE_CACHE_KEY.format(obj_id)
-            )
+            redis_data = self.redis_service.get(SINGLE_RESOURCE_CACHE_KEY.format(obj_id))
             if redis_data:
                 self.redis_service.delete(SINGLE_RESOURCE_CACHE_KEY.format(obj_id))
             _ = cache_list_of_object(

@@ -3,6 +3,7 @@ import uuid
 from dataclasses import dataclass
 
 from sqlalchemy.sql import func
+
 from app import db
 
 

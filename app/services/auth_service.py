@@ -1,28 +1,29 @@
 from dataclasses import dataclass
-from config import Config
+from datetime import datetime, timedelta
+
+import jwt
+
 from app.core.exceptions import AppException
 from app.core.service_interfaces import AuthServiceInterface
-import jwt
-from datetime import datetime, timedelta
-from app.utils.auth import decode_token
 from app.enums import TokenTypeEnum
+from app.utils.auth import decode_token
+from config import Config
 
 REFRESH_TOKEN_EXPIRATION = Config.ACCESS_TOKEN_EXPIRATION + timedelta(minutes=30)
 
 
 @dataclass
 class AuthService(AuthServiceInterface):
-
     def get_token(self, user_id: str):
         access_token = self.generate_token(
             user_id=user_id,
             token_type=TokenTypeEnum.access_token.value,
-            expiration=Config.ACCESS_TOKEN_EXPIRATION
+            expiration=Config.ACCESS_TOKEN_EXPIRATION,
         )
         refresh_token = self.generate_token(
             user_id=user_id,
             token_type=TokenTypeEnum.refresh_token.value,
-            expiration=REFRESH_TOKEN_EXPIRATION
+            expiration=REFRESH_TOKEN_EXPIRATION,
         )
 
         return {"access_token": access_token, "refresh_token": refresh_token}
@@ -37,11 +38,7 @@ class AuthService(AuthServiceInterface):
 
     # noinspection PyMethodMayBeStatic
     def generate_token(self, user_id: str, token_type: str, expiration: datetime):
-        payload = {
-            "id": user_id,
-            "token_type": token_type,
-            "exp": expiration
-        }
+        payload = {"id": user_id, "token_type": token_type, "exp": expiration}
         token = jwt.encode(
             payload=payload, key=Config.SECRET_KEY, algorithm=Config.JWT_ALGORITHMS
         )
