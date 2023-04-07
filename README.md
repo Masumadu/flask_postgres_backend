@@ -14,11 +14,13 @@
     - [🛠 Built With](#built-with)
       - Python
       - Poetry
-      - [Tech Stack](#tech-stack)
+      - Docker
+      - Docker Compose
+      - [🔥 Tech Stack](#tech-stack)
         - FastApi
         - Postgres
         - Redis
-      - [Key Features](#key-features)
+      - [🔑 Key Features](#key-features)
         - Factory Design Pattern
         - Decorator Pattern
         - Clean Code Approach
@@ -30,39 +32,47 @@
   - me to come up with this design to help serve as a template for new developers. This can
   - serve as a guide for new python developers to build upon.
 - [💻 Getting Started](#getting-started)
-  - [⚙️ Prerequisites](#prerequisites)
+  - [📜 Prerequisites](#prerequisites)
     - python3
     - python3-venv
     - poetry
     - postgres
     - redis
+    - docker
+    - docker-compose
     - git
-  - [⚙️ Install](#setup)
+  - [⚓ Install](#setup)
     - install the various tools listed under prerequisite on your local machine
     - for instructions on how to install and set up these tools, please check their websites for directions
   - [⚙️ Setup](#install)
     - from your terminal, navigate to your preferred directory location on your machine
     - clone the repository into a directory of your choice
     - navigate into this directory
-    - create a virtual environment and activate it by executing below commands
-      - for linux, run
-        1. `python3 -m venv venv`
-        2. `source venv/bin/activate` for linux
-      - for windows, run
-        1. `python3 -m venv venv`
-        2. `venv\Scripts\activate`
-  - [Usage](#usage)
-    - with the virtual environment activated, run blow commands to install dependencies
-      1. `poetry install`
-    - after installing dependencies, run below command to start application
-      1. `flask run -p 5000`
-    - access application on http://localhost:8000
-  - [Run tests](#run-tests)
+  - [▶️ Run Application](#run-application)
+    - without docker:
+      - create a virtual environment and activate it by executing below commands
+        - for linux, run
+          1. `python3 -m venv venv`
+          2. `source venv/bin/activate`
+        - for windows, run
+          1. `python3 -m venv venv`
+          2. `venv\Scripts\activate`
+      - with the virtual environment activated, run blow commands to install dependencies
+          1. `poetry install`
+      - after installing dependencies, run below command to start application
+          1. `flask run -p 5000`
+    - with docker:
+      - run below command:
+        - `docker-compose up`
+  - [🕹️ Usage](#usage)
+    - access application on http://localhost:5000
+    - test endpoint from swagger documentation
+  - [💯 Run tests](#run-tests)
     - To run the unit tests cases, run below command
       - `pytest -v`
-  - [Deployment](#triangular_flag_on_post-deployment)
+  - [🚀 Deployment](#triangular_flag_on_post-deployment)
     - TODO
-- [👥 Authors](#authors)
+- [👥 Author](#author)
   - Michael Asumadu
     - email ✉️ : michaelasumadu10@gmail.com
     - country 🌍 : Ghana 🇬🇭

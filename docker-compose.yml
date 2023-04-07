@@ -1,0 +1,64 @@
+version: "3.8"
+services:
+  backend:
+    build: .
+    container_name: "flask-postgres-backend"
+    environment:
+      FLASK_DEBUG: ${FLASK_DEBUG}
+      SECRET_KEY: ${SECRET_KEY}
+      DB_ENGINE: ${DB_ENGINE}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      REDIS_SERVER: ${REDIS_SERVER}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      MAIL_SERVER: ${MAIL_SERVER}
+      MAIL_SERVER_PORT: ${MAIL_SERVER_PORT}
+      DEFAULT_MAIL_SENDER_ADDRESS: ${DEFAULT_MAIL_SENDER_ADDRESS}
+      ADMIN_MAIL_ADDRESSES: ${ADMIN_MAIL_ADDRESSES}
+      DEFAULT_MAIL_SENDER_PASSWORD: ${DEFAULT_MAIL_SENDER_PASSWORD}
+    command: ./gunicorn_starter.sh
+    ports:
+      - "5000:5000"
+    networks:
+      - flask_service
+    depends_on:
+      backend_db:
+        condition: service_healthy
+      redis:
+          condition: service_healthy
+
+  backend_db:
+    image: postgres:12
+    container_name: "postgres-database"
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - $PWD/.dbdata:/var/lib/postgresql/data
+    ports:
+      - "5430:5432"
+    networks:
+      - flask_service
+    healthcheck:
+        test: ["CMD", "pg_isready",  "-U", "${DB_USER}", "-d", "${DB_NAME}"]
+
+  redis:
+    image: redis:6.2.6-alpine
+    container_name: "redis-server"
+    command: redis-server --requirepass admin
+    ports:
+      - "6378:6379"
+    networks:
+      - flask_service
+    healthcheck:
+        test: ["CMD", "redis-cli", "ping"]
+
+networks:
+  flask_service:
+    name: flask_network
