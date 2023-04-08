@@ -1,6 +1,7 @@
 ## LOCAL CONFIGURATION (DEVELOPMENT)
 ## Flask Config
 #FLASK_DEBUG=true|false
+#APP_ENV=development|testing|production
 #SECRET_KEY=secret_key
 ## Local Database Config
 #DB_USER=db_user
@@ -24,7 +25,8 @@
 
 ## DOCKER COMPOSE CONFIGURATION (DEVELOPMENT)
 ## Flask Config
-#FLASK_DEBUG=true | false
+#FLASK_DEBUG=true|false
+#APP_ENV=development|testing|production
 #SECRET_KEY=secret_key
 # Local Database Config
 #DB_USER=db_user

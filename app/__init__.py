@@ -44,11 +44,9 @@ def create_app(config="config.DevelopmentConfig"):
 
     app.logger.removeHandler(default_handler)
     with app.app_context():
-        flask_debug = os.getenv("FLASK_DEBUG").lower()
-        debug_mode = True if flask_debug in ["1", "true"] else False
+        environment = os.getenv("APP_ENV")
         cfg = import_string(config)()
-        if not debug_mode:
-            print("loading production")
+        if environment == "production":
             cfg = import_string("config.ProductionConfig")()
         app.config.from_object(cfg)
 

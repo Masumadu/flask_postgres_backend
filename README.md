@@ -17,7 +17,7 @@
       - Docker
       - Docker Compose
       - [🔥 Tech Stack](#tech-stack)
-        - FastApi
+        - Flask
         - Postgres
         - Redis
       - [🔑 Key Features](#key-features)
