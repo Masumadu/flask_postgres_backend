@@ -1,47 +1,43 @@
 ## LOCAL CONFIGURATION (DEVELOPMENT)
-## Flask Config
-#FLASK_DEBUG=true|false
-#APP_ENV=development|testing|production
+## Flask Configuration
+#FLASK_DEBUG=true
+#APP_ENV=development|production|testing
 #SECRET_KEY=secret_key
-## Local Database Config
+## Database Configuration
 #DB_USER=db_user
 #DB_NAME=db_name
 #DB_HOST=db_host
 #DB_PASSWORD=db_password
 #DB_PORT=db_port
-#DB_ENGINE=POSTGRES
-##Redis Config
-#REDIS_SERVER=localhost
-#REDIS_PORT=6379
-#REDIS_PASSWORD=admin
+## Redis Configuration
+#REDIS_SERVER=redis_server
+#REDIS_PORT=redis_port
+#REDIS_PASSWORD=redis_password
 ## MAIL CONFIG
 #MAIL_SERVER=mail_server
-#MAIL_SERVER_PORT=mail_server_port
-#DEFAULT_MAIL_SENDER_ADDRESS=default_mail_sender_address
-#ADMIN_MAIL_ADDRESSES=admin_mail_sender_address
-#DEFAULT_MAIL_SENDER_PASSWORD=default_mail_sender_password
+#MAIL_SERVER_PORT=mail_port
+#DEFAULT_MAIL_SENDER_ADDRESS=mail_address_for_sending_logs
+#ADMIN_MAIL_ADDRESSES=mail_address_for_receiving_logs
+#DEFAULT_MAIL_SENDER_PASSWORD=mail_address_password_for_sending_logs
 
-
-
-## DOCKER COMPOSE CONFIGURATION (DEVELOPMENT)
-## Flask Config
-#FLASK_DEBUG=true|false
-#APP_ENV=development|testing|production
+## DOCKER CONFIGURATION (DEVELOPMENT)
+## Flask Configuration
+#FLASK_DEBUG=true
+#APP_ENV=development
 #SECRET_KEY=secret_key
-# Local Database Config
+## Database Configuration
 #DB_USER=db_user
 #DB_NAME=db_name
 #DB_HOST=backend_db
 #DB_PASSWORD=db_password
-#DB_PORT=5432
-#DB_ENGINE=POSTGRES
-##Redis Config
-#REDIS_SERVER=redis
-#REDIS_PORT=6379
-#REDIS_PASSWORD=admin
+#DB_PORT=db_port
+## Redis Configuration
+#REDIS_SERVER=redis_server
+#REDIS_PORT=redis_port
+#REDIS_PASSWORD=redis_password
 ## MAIL CONFIG
 #MAIL_SERVER=mail_server
 #MAIL_SERVER_PORT=mail_server_port
-#DEFAULT_MAIL_SENDER_ADDRESS=default_mail_sender_address
-#ADMIN_MAIL_ADDRESSES=admin_mail_sender_address
-#DEFAULT_MAIL_SENDER_PASSWORD=default_mail_sender_password
+#DEFAULT_MAIL_SENDER_ADDRESS=mail_address_for_sending_logs
+#ADMIN_MAIL_ADDRESSES=mail_address_for_receiving_logs
+#DEFAULT_MAIL_SENDER_PASSWORD=mail_address_password_for_sending_logs

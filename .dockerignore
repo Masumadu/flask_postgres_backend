@@ -50,6 +50,8 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+tests/
+pytest*
 
 # Translations
 *.mo
@@ -155,13 +157,15 @@ cython_debug/
 log.log
 
 #docker compose
-docker-compose.yml
-.scannerwork
-.dbdata
-docker-compose-dev.yml
-tests
-sonar-project.properties
-htmlcov
-sonar.sh
-__pycache__
-kafka_config
+docker*
+Dockerfile
+
+# poetry
+poetry.lock
+pyproject.toml
+
+# readme
+README*
+
+# any other files
+ignore*

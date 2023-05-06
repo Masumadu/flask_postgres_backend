@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   backend:
-    build: .
+    image: flask_postgres_backend:latest
     container_name: "flask-postgres-backend"
     environment:
       FLASK_DEBUG: ${FLASK_DEBUG}
@@ -40,7 +40,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     volumes:
-      - $PWD/.dbdata:/var/lib/postgresql/data
+      - $PWD/.ignore_postgres_data:/var/lib/postgresql/data
     ports:
       - "5430:5432"
     networks:

@@ -48,7 +48,7 @@ class BaseTestCase(TestCase):
         jwt_decode = patch("app.utils.auth.jwt.decode", self.decoded_token)
         self.addCleanup(jwt_decode.stop)
         jwt_decode.start()
-        bug_report = patch("app.core.log_config.MailHandler.send_mail")
+        bug_report = patch("app.core.log.MailHandler.send_mail")
         self.addCleanup(bug_report.stop)
         bug_report.start()
 

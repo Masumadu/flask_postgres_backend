@@ -18,7 +18,7 @@ sys.path.insert(
 from app.api_spec import spec
 from app.core.exceptions.app_exceptions import AppExceptionCase, app_exception_handler
 from app.core.extensions import cors, db, healthcheck, ma, migrate
-from app.core.log_config import log_config
+from app.core.log import log_config
 from app.health import HEALTH_CHECKS
 
 APP_ROOT = os.path.join(os.path.dirname(__file__), "..")  # refers to application_top

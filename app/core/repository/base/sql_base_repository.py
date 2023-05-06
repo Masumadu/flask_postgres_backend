@@ -147,7 +147,6 @@ class SQLBaseRepository(CRUDRepositoryInterface):
             raise AppException.OperationError(error_message=e.orig.args[0])
 
     def delete_by_id(self, obj_id: str):
-
         """
         :param obj_id: id of the object to delete
         :return:
@@ -161,7 +160,6 @@ class SQLBaseRepository(CRUDRepositoryInterface):
             raise AppException.OperationError(error_message=e.orig.args[0])
 
     def delete(self, filter_param: dict):
-
         """
         :param filter_param: object to filter with
         :return:

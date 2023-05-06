@@ -49,7 +49,7 @@ jobs:
 
       - name: Install dependencies
         shell: bash
-        run: poetry install
+        run: poetry install --no-root
 
       - name: Test with pytest
         run: |

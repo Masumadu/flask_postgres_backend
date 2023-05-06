@@ -9,7 +9,6 @@ from app import db
 
 @dataclass
 class ResourceModel(db.Model):
-
     id: str
     title: str
     content: str

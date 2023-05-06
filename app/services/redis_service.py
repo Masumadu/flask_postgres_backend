@@ -52,4 +52,6 @@ class RedisService(CacheServiceInterface):
         try:
             redis_conn.delete(name)
         except RedisError:
-            raise HTTPException(status_code=500, description="Error deleting from cache")
+            raise HTTPException(
+                status_code=500, description="Error deleting from cache"
+            )

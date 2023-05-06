@@ -51,7 +51,8 @@ class TestResourceController(BaseTestCase):
     @pytest.mark.controller
     def test_update_resource(self):
         result = self.resource_controller.update_resource(
-            obj_id=self.resource_model.id, obj_in=self.resource_test_data.update_resource
+            obj_id=self.resource_model.id,
+            obj_in=self.resource_test_data.update_resource,
         )
         self.assertIsNotNone(result)
         self.assert200(result)

@@ -1,4 +1,3 @@
-import json
 import logging
 from datetime import datetime
 from logging.handlers import SMTPHandler
@@ -29,19 +28,6 @@ def message_struct(
     }
 
 
-def log_message_struct(record):
-    return {
-        Config.APP_NAME: {
-            record.levelname: {
-                "timestamp": record.asctime,
-                "remote address": record.remote_addr,
-                "requested url": record.url,
-                "message": record.message,
-            }
-        }
-    }
-
-
 class MailHandler(SMTPHandler):
     def emit(self, record):
         """
@@ -51,31 +37,8 @@ class MailHandler(SMTPHandler):
         Thread(target=self.send_mail, kwargs={"record": record}).start()
 
     def send_mail(self, record):
-        try:
-            import email.utils
-            import smtplib
-            from email.message import EmailMessage
-
-            port = self.mailport
-            if not port:
-                port = smtplib.SMTP_PORT
-            smtp = smtplib.SMTP(self.mailhost, port, timeout=30)
-            msg = EmailMessage()
-            msg["From"] = self.fromaddr
-            msg["To"] = ",".join(self.toaddrs)
-            msg["Subject"] = self.getSubject(record)
-            msg["Date"] = email.utils.localtime()
-            msg.set_content(self.format(record))
-            if self.username:
-                if self.secure is not None:
-                    smtp.ehlo()
-                    smtp.starttls(*self.secure)
-                    smtp.ehlo()
-                smtp.login(self.username, self.password)
-            smtp.send_message(msg)
-            smtp.quit()
-        except Exception:
-            self.handleError(record)
+        self.timeout = 30
+        super().emit(record)
 
 
 class RequestFormatter(logging.Formatter):
@@ -86,8 +49,8 @@ class RequestFormatter(logging.Formatter):
         else:
             record.url = None
             record.remote_addr = None
-        super().format(record)
-        return json.dumps(log_message_struct(record), indent=2)
+        return super().format(record)
+        # return json.dumps(log_message_struct(record), indent=2)
 
 
 def log_config():
@@ -126,7 +89,7 @@ def log_config():
                 "stream": "ext://sys.stdout",
             },
             "error_mail_handler": {
-                "()": "app.core.log_config.MailHandler",
+                "()": "app.core.log.MailHandler",
                 "formatter": "error_formatter",
                 "level": "ERROR",
                 "mailhost": (Config.MAIL_SERVER, Config.MAIL_SERVER_PORT),
@@ -157,7 +120,7 @@ def log_config():
                 "backupCount": 2,
             },
             "critical_mail_handler": {
-                "()": "app.core.log_config.MailHandler",
+                "()": "app.core.log.MailHandler",
                 "formatter": "error_formatter",
                 "level": "CRITICAL",
                 "mailhost": (Config.MAIL_SERVER, Config.MAIL_SERVER_PORT),
@@ -176,8 +139,10 @@ def log_config():
                 "format": "%(message)s",
             },
             "error_formatter": {
-                "()": "app.core.log_config.RequestFormatter",
-                "format": "%(levelname)s%(asctime)s%(message)s%(remote_addr)s%(url)s",
+                "()": "app.core.log.RequestFormatter",
+                "format": """
+                \n--- Logging %(levelname)s at %(asctime)s --- \n%(message)s
+                """,
                 "datefmt": "%Y-%m-%d %H:%M:%S",
             },
         },

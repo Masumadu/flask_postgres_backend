@@ -41,7 +41,6 @@ htmlcov/
 .tox/
 .nox/
 .coverage
-.coveragerc
 .coverage.*
 .cache
 nosetests.xml
@@ -149,20 +148,13 @@ cython_debug/
 .devcontainer
 
 # Jwt Private Key and Public Key
-keycloak_private_key.pem
-keycloak_public_key.pub
-
-# docker volume
-.dbdata
-.keycloakdata
-
-# ignore docker compose dev file
-docker-compose-dev.yml
+*private_key.pem
+*public_key.pub
 
 # ignore sonarqube files
 .scannerwork
 sonar-project.properties
 sonar.sh
-kafka_config
-# locust test files
-locust_test_file.py
+
+# ignore any other files
+.ignore*
